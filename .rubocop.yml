@@ -1,0 +1,728 @@
+require:
+    - rubocop-performance
+    - rubocop-rails
+    - rubocop-rake
+    - rubocop-minitest
+
+AllCops:
+  TargetRubyVersion: 3.1
+  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
+  # to ignore them, so only the ones explicitly set in this file are enabled.
+  #DisabledByDefault: true
+  Exclude:
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - 'node_modules/**/*'
+
+# Uncomment to exclude performance on tests/specs
+#Performance:
+#  Exclude:
+#    - '**/test/**/*'
+
+Gemspec/DeprecatedAttributeAssignment: # new in 1.30
+  Enabled: true
+
+Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+
+# Delete the following section if not using Rails
+Rails:
+  Enabled: true
+
+# Prefer assert_not over assert !
+Rails/AssertNot:
+  Include:
+    - '**/test/**/*'
+
+# Prefer assert_not_x over refute_x
+Rails/RefuteMethods:
+  Include:
+    - '**/test/**/*'
+
+Rails/ActionControllerTestCase: # new in 2.14
+  Enabled: true
+
+Rails/ActiveRecordCallbacksOrder: # new in 2.7
+  Enabled: true
+
+Rails/AddColumnIndex: # new in 2.11
+  Enabled: true
+
+Rails/AfterCommitOverride: # new in 2.8
+  Enabled: true
+
+Rails/AttributeDefaultBlockValue: # new in 2.9
+  Enabled: true
+
+Rails/CompactBlank: # new in 2.13
+  Enabled: true
+
+Rails/DeprecatedActiveModelErrorsMethods: # new in 2.14
+  Enabled: true
+
+Rails/DotSeparatedKeys: # new in 2.15
+  Enabled: true
+
+Rails/DuplicateAssociation: # new in 2.14
+  Enabled: true
+
+Rails/DuplicateScope: # new in 2.14
+  Enabled: true
+
+Rails/DurationArithmetic: # new in 2.13
+  Enabled: true
+
+Rails/EagerEvaluationLogMessage: # new in 2.11
+  Enabled: true
+
+Rails/ExpandedDateRange: # new in 2.11
+  Enabled: true
+
+Rails/FindById: # new in 2.7
+  Enabled: true
+
+Rails/I18nLazyLookup: # new in 2.14
+  Enabled: true
+
+Rails/I18nLocaleAssignment: # new in 2.11
+  Enabled: true
+
+Rails/I18nLocaleTexts: # new in 2.14
+  Enabled: true
+
+Rails/Inquiry: # new in 2.7
+  Enabled: true
+
+Rails/MailerName: # new in 2.7
+  Enabled: true
+
+Rails/MatchRoute: # new in 2.7
+  Enabled: true
+
+Rails/MigrationClassName: # new in 2.14
+  Enabled: true
+
+Rails/NegateInclude: # new in 2.7
+  Enabled: true
+
+Rails/Pluck: # new in 2.7
+  Enabled: true
+
+Rails/PluckInWhere: # new in 2.7
+  Enabled: true
+
+Rails/RedundantPresenceValidationOnBelongsTo: # new in 2.13
+  Enabled: true
+
+Rails/RedundantTravelBack: # new in 2.12
+  Enabled: true
+
+Rails/RenderInline: # new in 2.7
+  Enabled: true
+
+Rails/RenderPlainText: # new in 2.7
+  Enabled: true
+
+Rails/RootJoinChain: # new in 2.13
+  Enabled: true
+
+Rails/RootPublicPath: # new in 2.15
+  Enabled: true
+
+Rails/ShortI18n: # new in 2.7
+  Enabled: true
+
+Rails/SquishedSQLHeredocs: # new in 2.8
+  Enabled: true
+
+Rails/StripHeredoc: # new in 2.15
+  Enabled: true
+
+Rails/TimeZoneAssignment: # new in 2.10
+  Enabled: true
+
+Rails/ToFormattedS: # new in 2.15
+  Enabled: true
+
+Rails/TransactionExitStatement: # new in 2.14
+  Enabled: true
+
+Rails/UnusedIgnoredColumns: # new in 2.11
+  Enabled: true
+
+Rails/WhereEquals: # new in 2.9
+  Enabled: true
+
+Rails/WhereExists: # new in 2.7
+  Enabled: true
+
+Rails/WhereNot: # new in 2.8
+  Enabled: true
+
+Rails/Present:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+# Prefer &&/|| over and/or.
+Style/AndOr:
+  Enabled: true
+
+# Align `when` with `case`.
+Layout/CaseIndentation:
+  Enabled: true
+
+# Align comments with method definitions.
+Layout/CommentIndentation:
+  Enabled: true
+
+Layout/ElseAlignment:
+  Enabled: true
+
+# Align `end` with the matching keyword or starting expression except for
+# assignments, where it should be aligned with the LHS.
+Layout/EndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: variable
+  AutoCorrect: true
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: true
+
+# In a regular class definition, no empty lines around the body.
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+
+# In a regular method definition, no empty lines around the body.
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# In a regular module definition, no empty lines around the body.
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+Layout/FirstArgumentIndentation:
+  Enabled: true
+
+# Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
+Style/HashSyntax:
+  Enabled: true
+
+# Method definitions after `private` or `protected` isolated calls need one
+# extra level of indentation.
+Layout/IndentationConsistency:
+  Enabled: true
+  EnforcedStyle: indented_internal_methods
+
+# Two spaces, no tabs (for indentation).
+Layout/IndentationWidth:
+  Enabled: true
+
+Layout/LeadingCommentSpace:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Layout/SpaceAfterColon:
+  Enabled: true
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Layout/SpaceAfterSemicolon:
+  Enabled: true
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  Enabled: true
+
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+
+Layout/SpaceBeforeComma:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
+  Enabled: true
+
+Layout/LineContinuationLeadingSpace: # new in 1.31
+  Enabled: true
+
+Layout/LineContinuationSpacing: # new in 1.31
+  Enabled: true
+
+Style/DefWithParentheses:
+  Enabled: true
+
+# Defining a method with parameters needs parentheses.
+Style/MethodDefParentheses:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RedundantFreeze:
+  Enabled: true
+
+Style/PerlBackrefs:
+  Enabled: true
+  Exclude:
+  - 'bin/*'
+
+# Use `foo {}` not `foo{}`.
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+# Use `foo { bar }` not `foo {bar}`.
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyleForEmptyBraces: space
+
+# Use `{ a: 1 }` not `{a:1}`.
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
+
+# Check quotes usage according to lint rule below.
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+# Detect hard tabs, no hard tabs.
+Layout/IndentationStyle:
+  Enabled: true
+
+# Blank lines should not have any spaces.
+Layout/TrailingEmptyLines:
+  Enabled: true
+
+# No trailing whitespace.
+Layout/TrailingWhitespace:
+  Enabled: true
+
+Layout/MultilineOperationIndentation: # (new in 1.9)
+  Enabled: true
+  Exclude:
+  - 'bin/bundle'
+
+# Use quotes for string literals when they are enough.
+Style/RedundantPercentQ:
+  Enabled: true
+
+Lint/ErbNewArguments:
+  Enabled: true
+
+# Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
+Lint/RequireParentheses:
+  Enabled: true
+
+Lint/ShadowingOuterLocalVariable:
+  Enabled: true
+
+Lint/RedundantStringCoercion:
+  Enabled: true
+
+Lint/UriEscapeUnescape:
+  Enabled: true
+
+Lint/UselessAssignment:
+  Enabled: true
+
+Lint/DeprecatedClassMethods:
+  Enabled: true
+
+Lint/DuplicateBranch: # (new in 1.3)
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+
+Lint/EmptyBlock: # (new in 1.1)
+  Enabled: true
+
+Lint/EmptyClass: # (new in 1.3)
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+
+Lint/UnexpectedBlockArity: # (new in 1.5)
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+
+Lint/ConstantOverwrittenInRescue: # new in 1.31
+  Enabled: true
+
+Lint/NonAtomicFileOperation: # new in 1.31
+  Enabled: true
+
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+
+Lint/RequireRangeParentheses: # new in 1.32
+  Enabled: true
+
+Security/CompoundHash: # new in 1.28
+  Enabled: true
+
+Style/ParenthesesAroundCondition:
+  Enabled: true
+
+Style/RedundantBegin:
+  Enabled: true
+
+Style/RedundantReturn:
+  Enabled: true
+  AllowMultipleReturnValues: true
+
+Style/Semicolon:
+  Enabled: true
+  AllowAsExpressionSeparator: true
+
+# Prefer Foo.method over Foo::method
+Style/ColonMethodCall:
+  Enabled: true
+
+Style/TrivialAccessors:
+  Enabled: true
+
+Style/ArgumentsForwarding: # (new in 1.1)
+  Enabled: true
+
+Style/CollectionCompact: # (new in 1.2)
+  Enabled: true
+
+Style/Documentation:
+  Enabled: true
+  Exclude:
+  - 'config/application.rb'
+  - 'app/helpers/application_helper.rb'
+
+Style/DocumentDynamicEvalDefinition: # (new in 1.1)
+  Enabled: true
+
+Style/NegatedIfElseCondition: # (new in 1.2)
+  Enabled: true
+
+Style/NilLambda: # (new in 1.3)
+  Enabled: true
+
+Style/RedundantArgument: # (new in 1.4)
+  Enabled: true
+
+Style/SwapValues: # (new in 1.1)
+  Enabled: true
+
+Style/EmptyHeredoc: # new in 1.32
+  Enabled: true
+
+Style/EnvHome: # new in 1.29
+  Enabled: true
+
+Style/FetchEnvVar: # new in 1.28
+  Enabled: true
+  Exclude:
+  - 'bin/bundle'
+
+Style/SpecialGlobalVars: # new in 1.28
+  Enabled: true
+  Exclude:
+  - 'bin/bundle'
+
+Style/MagicCommentFormat: # new in 1.35
+  Enabled: true
+
+Style/MapCompactWithConditionalBlock: # new in 1.30
+  Enabled: true
+
+Style/NestedFileDirname: # new in 1.26
+  Enabled: true
+
+Style/ObjectThen: # new in 1.28
+  Enabled: true
+
+Style/RedundantInitialize: # new in 1.27
+  Enabled: true
+
+Performance/FlatMap:
+  Enabled: true
+
+Performance/RedundantMerge:
+  Enabled: true
+
+Performance/StartWith:
+  Enabled: true
+
+Performance/EndWith:
+  Enabled: true
+
+Performance/RegexpMatch:
+  Enabled: true
+
+Performance/UnfreezeString:
+  Enabled: true
+
+Performance/AncestorsInclude: # (new in 1.7)
+  Enabled: true
+
+Performance/BigDecimalWithNumericArgument: # (new in 1.7)
+  Enabled: true
+
+Performance/BlockGivenWithExplicitBlock: # (new in 1.9)
+  Enabled: true
+
+Performance/CollectionLiteralInLoop: # (new in 1.8)
+  Enabled: true
+
+Performance/ConstantRegexp: # (new in 1.9)
+  Enabled: true
+  Exclude:
+  - 'bin/bundle'
+
+Performance/MethodObjectAsBlock: # (new in 1.9)
+  Enabled: true
+
+Performance/RedundantSortBlock: # (new in 1.7)
+  Enabled: true
+
+Performance/RedundantStringChars: # (new in 1.7)
+  Enabled: true
+
+Performance/ReverseFirst: # (new in 1.7)
+  Enabled: true
+
+Performance/SortReverse: # (new in 1.7)
+  Enabled: true
+
+Performance/Squeeze: # (new in 1.7)
+  Enabled: true
+
+Performance/StringInclude: # (new in 1.7)
+  Enabled: true
+
+Performance/Sum: # (new in 1.8)
+  Enabled: true
+
+Layout/SpaceBeforeBrackets: # (new in 1.7)
+  Enabled: true
+
+Lint/AmbiguousAssignment: # (new in 1.7)
+  Enabled: true
+
+Lint/DeprecatedConstants: # (new in 1.8)
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
+  Enabled: true
+
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: true
+
+Style/EndlessMethod: # (new in 1.8)
+  Enabled: true
+
+Style/HashExcept: # (new in 1.7)
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation: # (new in 1.18)
+  Enabled: true
+
+Lint/EmptyInPattern: # (new in 1.16)
+  Enabled: true
+
+Lint/NumberedParameterAssignment: # (new in 1.9)
+  Enabled: true
+
+Lint/OrAssignmentToConstant: # (new in 1.9)
+  Enabled: true
+
+Lint/SymbolConversion: # (new in 1.9)
+  Enabled: true
+
+Lint/TripleQuotes: # (new in 1.9)
+  Enabled: true
+
+Metrics/CyclomaticComplexity:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/MethodLength:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/PerceivedComplexity:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Naming/InclusiveLanguage: # (new in 1.18)
+  Enabled: false
+
+Style/HashConversion: # (new in 1.10)
+  Enabled: true
+
+Style/IfWithBooleanLiteralBranches: # (new in 1.9)
+  Enabled: true
+
+Style/InPatternThen: # (new in 1.16)
+  Enabled: true
+
+Style/MultilineInPatternThen: # (new in 1.16)
+  Enabled: true
+
+Style/QuotedSymbols: # (new in 1.16)
+  Enabled: true
+
+Style/StringChars: # (new in 1.12)
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Style/ExpandPathArguments:
+  Enabled: true
+  Exclude:
+    - 'bin/bundle'
+
+Performance/MapCompact: # (new in 1.11)
+  Enabled: true
+
+Performance/RedundantEqualityComparisonBlock: # (new in 1.10)
+  Enabled: true
+
+Performance/RedundantSplitRegexpArgument: # (new in 1.10)
+  Enabled: true
+Lint/AmbiguousRange: # new in 1.19
+  Enabled: true
+Style/RedundantSelfAssignmentBranch: # new in 1.19
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence: # new in 1.21
+  Enabled: true
+
+Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
+  Enabled: true
+
+Lint/RequireRelativeSelfPath: # new in 1.22
+  Enabled: true
+
+Security/IoMethods: # new in 1.22
+  Enabled: true
+
+Style/NumberedParameters: # new in 1.22
+  Enabled: true
+
+Style/NumberedParametersLimit: # new in 1.22
+  Enabled: true
+
+Style/SelectByRegexp: # new in 1.22
+  Enabled: true
+
+Lint/UselessRuby2Keywords: # new in 1.23
+  Enabled: true
+
+Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+
+Style/FileRead: # new in 1.24
+  Enabled: true
+
+Style/FileWrite: # new in 1.24
+  Enabled: true
+
+Style/MapToHash: # new in 1.24
+  Enabled: true
+
+Style/OpenStructUse: # new in 1.23
+  Enabled: true
+
+Performance/ConcurrentMonotonicTime: # new in 1.12
+  Enabled: true
+
+Performance/StringIdentifierArgument: # new in 1.13
+  Enabled: true
+
+# Minitest specific cop config. Remove if not using Minitest
+Minitest/AssertInDelta: # new in 0.10
+  Enabled: true
+
+Minitest/AssertKindOf: # new in 0.10
+  Enabled: true
+
+Minitest/AssertOutput: # new in 0.10
+  Enabled: true
+
+Minitest/AssertPathExists: # new in 0.10
+  Enabled: true
+
+Minitest/AssertPredicate: # new in 0.18
+  Enabled: true
+
+Minitest/AssertRaisesCompoundBody: # new in 0.21
+  Enabled: true
+
+Minitest/AssertSilent: # new in 0.10
+  Enabled: true
+
+Minitest/AssertWithExpectedArgument: # new in 0.11
+  Enabled: true
+
+Minitest/AssertionInLifecycleHook: # new in 0.10
+  Enabled: true
+
+Minitest/DuplicateTestRun: # new in 0.19
+  Enabled: true
+
+Minitest/LiteralAsActualArgument: # new in 0.10
+  Enabled: true
+
+Minitest/MultipleAssertions: # new in 0.10
+  Enabled: false
+
+Minitest/RefuteInDelta: # new in 0.10
+  Enabled: true
+
+Minitest/RefuteKindOf: # new in 0.10
+  Enabled: true
+
+Minitest/RefutePathExists: # new in 0.10
+  Enabled: true
+
+Minitest/RefutePredicate: # new in 0.18
+  Enabled: true
+
+Minitest/SkipEnsure: # new in 0.20
+  Enabled: true
+
+Minitest/TestMethodName: # new in 0.10
+  Enabled: true
+
+Minitest/UnspecifiedException: # new in 0.10
+  Enabled: true
+
+Minitest/UnreachableAssertion: # new in 0.14
+  Enabled: true
