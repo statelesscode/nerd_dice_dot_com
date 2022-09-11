@@ -13,6 +13,7 @@ AllCops:
     - '**/templates/**/*'
     - '**/vendor/**/*'
     - 'node_modules/**/*'
+    - 'db/schema.rb'
 
 # Uncomment to exclude performance on tests/specs
 #Performance:
@@ -416,7 +417,8 @@ Style/Documentation:
   Enabled: true
   Exclude:
   - 'config/application.rb'
-  - 'app/helpers/application_helper.rb'
+  - 'app/helpers/*'
+  - 'app/controllers/*'
 
 Style/DocumentDynamicEvalDefinition: # (new in 1.1)
   Enabled: true
@@ -435,6 +437,10 @@ Style/SwapValues: # (new in 1.1)
 
 Style/EmptyHeredoc: # new in 1.32
   Enabled: true
+
+Style/EmptyMethod:
+  Exclude:
+  - 'app/controllers/*'
 
 Style/EnvHome: # new in 1.29
   Enabled: true

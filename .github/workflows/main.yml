@@ -1,0 +1,75 @@
+# This is a basic workflow to help you get started with Actions
+
+name: 'NerdDice.com Build'
+
+# Controls when the action will run.
+on: [push]
+
+  # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PostgreSQL
+      run: sudo apt-get -yqq install libpq-dev
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run Rubocop
+      run: bundle exec rubocop --parallel
+    - name: Setup Database
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+      run: |
+        cp .github/build_overwrite_files/database.yml.github-actions config/database.yml
+        bundle exec rails db:setup
+    - name: Build and test with minitest
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      run: bundle exec rails test:system test
+#    - name: Coveralls Parallel
+#      uses: coverallsapp/github-action@master
+#      with:
+#        github-token: ${{ secrets.github_token }}
+#        flag-name: run-${{ matrix.test_number }}
+#        parallel: true
+
+#  finish:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: Coveralls Finished
+#      uses: coverallsapp/github-action@master
+#      with:
+#        github-token: ${{ secrets.github_token }}
+#        parallel-finished: true
