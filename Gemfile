@@ -61,11 +61,11 @@ group :development do
   gem "web-console"
 
   # add RuboCop gems for project
-  gem "rubocop"
-  gem "rubocop-minitest"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rake"
+  gem "rubocop", require: false
+  gem "rubocop-minitest", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rake", require: false
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -78,4 +78,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  # test coverage
+  gem "coveralls_reborn", "~> 0.25.0", require: false
+  gem "simplecov-lcov", "~> 0.8.0", require: false
 end

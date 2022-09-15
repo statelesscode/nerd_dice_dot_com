@@ -1,4 +1,5 @@
 # README
+[![Coverage Status](https://coveralls.io/repos/github/statelesscode/nerd_dice_dot_com/badge.svg?branch=main)](https://coveralls.io/github/statelesscode/nerd_dice_dot_com?branch=main)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
