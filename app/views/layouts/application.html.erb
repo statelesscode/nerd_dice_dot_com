@@ -12,6 +12,14 @@
   </head>
 
   <body>
+    <% if flash[:notice] || flash[:alert] %>
+      <% text_color = flash[:notice] ? 'text-green-600' : 'text-red-600' %>
+      <% flash_text = flash[:notice] ? flash[:notice] : flash[:alert] %>
+
+      <div id="flash">
+        <p class="<%="#{text_color}"%> px-5 py-2"><%= flash_text %></p>
+      </div>
+    <% end %>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

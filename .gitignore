@@ -35,3 +35,9 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+/config/credentials/test.key
+
+/config/credentials/development.key
+
+/.github/build_overwrite_files/test.key.github-actions

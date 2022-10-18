@@ -45,8 +45,11 @@ jobs:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
         POSTGRES_DB: postgres
+        TEST_KEY: ${{ secrets.TEST_CREDENTIALS_KEY }}
       run: |
         cp .github/build_overwrite_files/database.yml.github-actions config/database.yml
+        printf "$TEST_KEY" > config/credentials/test.key
+        cp .github/build_overwrite_files/test.yml.enc.github-actions config/credentials/test.yml.enc
         bundle exec rails db:setup
     - name: Build and test with minitest
       env:
@@ -55,7 +58,6 @@ jobs:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: postgres
         POSTGRES_DB: postgres
-        RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       run: bundle exec rails test:system test
     - name: Coveralls Parallel
       uses: coverallsapp/github-action@master

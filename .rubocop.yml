@@ -573,6 +573,11 @@ Metrics/CyclomaticComplexity:
   Exclude:
     - 'bin/bundle'
 
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'config/initializers/*'
+
 Metrics/MethodLength:
   Enabled: true
   Exclude:
