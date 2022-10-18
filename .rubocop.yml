@@ -568,6 +568,11 @@ Lint/SymbolConversion: # (new in 1.9)
 Lint/TripleQuotes: # (new in 1.9)
   Enabled: true
 
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - 'db/migrate/*'
+
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
@@ -582,6 +587,7 @@ Metrics/MethodLength:
   Enabled: true
   Exclude:
     - 'bin/bundle'
+    - 'db/migrate/*'
 
 Metrics/PerceivedComplexity:
   Enabled: true

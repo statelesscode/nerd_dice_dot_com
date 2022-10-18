@@ -1,0 +1,19 @@
+DEFAULTS: &DEFAULTS
+  confirmed_at: <%= Time.now %>
+  sign_in_count: 0
+  failed_attempts: 0
+  email: 'statelesscode@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "justaguy12345678") %>
+
+stateless:
+  <<: *DEFAULTS
+
+dm:
+  <<: *DEFAULTS
+  email: 'dungeonmaster@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "TestPass5678") %>
+
+player:
+  <<: *DEFAULTS
+  email: 'rpgplayer@example.com'
+  encrypted_password: <%= Devise::Encryptor.digest(User, "Other2468Password") %>
