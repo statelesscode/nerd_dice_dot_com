@@ -1,3 +1,28 @@
+# credit for Devise Turbo Solution solution: article
+# Better Programming - Devise Auth Setup in Rails 7 by Nick Francisci
+# https://betterprogramming.pub/devise-auth-setup-in-rails-7-44240aaed4be
+# credit for solution: video
+# Go Rails -  How to use Devise with Hotwire & Turbo.js by Chris Oliver
+# https://gorails.com/episodes/devise-hotwire-turbo
+# Turbo doesn't work with devise by default.
+# Keep tabs on https://github.com/heartcombo/devise/issues/5446 for a possible fix
+#######################################################################
+# TECH DEBT: Remove when version of Devise is released that integrates
+#            with Turbo without requiring workarounds
+#######################################################################
+class TurboFailureApp < Devise::FailureApp
+  def respond
+    if request_format == :turbo_stream
+      redirect
+    else
+      super
+    end
+  end
+
+  def skip_format?
+    %w[html turbo_stream].include? request_format.to_s
+  end
+end
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -16,7 +41,11 @@ Devise.setup do |config|
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
-  # config.parent_controller = 'DeviseController'
+  #######################################################################
+  # TECH DEBT: Remove when version of Devise is released that integrates
+  #            with Turbo without requiring workarounds
+  #######################################################################
+  config.parent_controller = "TurboDeviseController"
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -261,6 +290,10 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
+  #######################################################################
+  # TECH DEBT: Remove when version of Devise is released that integrates
+  #            with Turbo without requiring workarounds
+  #######################################################################
   config.navigational_formats = %i[html turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
@@ -275,11 +308,15 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
-  #   manager.intercept_401 = false
-  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
-  # end
-
+  #######################################################################
+  # TECH DEBT: Remove when version of Devise is released that integrates
+  #            with Turbo without requiring workarounds
+  #######################################################################
+  config.warden do |manager|
+    manager.failure_app = TurboFailureApp
+    #   manager.intercept_401 = false
+    #   manager.default_strategies(scope: :user).unshift :some_external_strategy
+  end
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
