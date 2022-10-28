@@ -23,13 +23,8 @@ module Devise
       visit user_confirmation_url(confirmation_token: user.confirmation_token)
       # flash
       assert_text "Your email address has been successfully confirmed."
-      assert_text "Log in"
-      assert_text "Remember me"
-      fill_in "Email", with: @new_user_email
-      fill_in "Password", with: @new_user_password
-      check "Remember me"
-      click_on "Log in"
 
+      login_with_credentials!(@new_user_email, @new_user_password)
       # back to welcome page but logged in
       welcome_page_logged_in_assertions!
       assert_text "Signed in successfully."

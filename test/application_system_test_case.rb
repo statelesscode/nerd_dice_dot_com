@@ -26,4 +26,26 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_text "Visit the members' area"
     assert_text "Log out"
   end
+
+  def login_with_user!(user)
+    login_with_credentials!(user.email, FIXTURE_USER_PASSWORDS[user.email])
+  end
+
+  def login_with_credentials!(email, password)
+    visit new_user_session_url
+    login_page_assertions!
+    fill_in "Email", with: email
+    fill_in "Password", with: password
+    check "Remember me"
+    click_on "Log in"
+  end
+
+  def login_page_assertions!
+    assert_text "Log in"
+    assert_text "Remember me"
+    assert_text "Sign up"
+    assert_text "Forgot your password?"
+    assert_text "Didn't receive confirmation instructions?"
+    assert_text "Didn't receive unlock instructions?"
+  end
 end

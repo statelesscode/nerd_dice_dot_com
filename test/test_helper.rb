@@ -28,6 +28,12 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
+    # Need to update this if more user fixtures are added
+    FIXTURE_USER_PASSWORDS = {
+      "statelesscode@example.com" => "justaguy12345678",
+      "dungeonmaster@example.com" => "TestPass5678",
+      "rpgplayer@example.com" => "Other2468Password"
+    }.freeze
     # Add more helper methods to be used by all tests here...
 
     # Run tests to ensure all fixtures are valid for a model.
