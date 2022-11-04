@@ -52,5 +52,21 @@ module ActiveSupport
         )
       end
     end
+
+    # Get a token key from an email
+    # @param email the action mailer delivery to match against
+    # @param token_key the string of the token key to match against
+    #
+    # The token must be in the email body in a format like this and contain only
+    # word characters and hyphens:
+    # \"https://example.com/some_route/my_token=ab3dre9-dhefh\"
+    #
+    # Example using email with URL above
+    # get_token_from_email(ActionMailer::Base.deliveries.last, "my_token")
+    #
+    # Will return the matching token from the email ("ab3dre9-dhefh" in example above)
+    def get_token_from_email(email, token_key)
+      email.body.raw_source.match(/#{token_key}=[\w\-]+/).to_s.split("=")[1]
+    end
   end
 end

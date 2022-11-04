@@ -2,6 +2,9 @@ require "test_helper"
 
 # For configuration and customization of browser driven tests
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  # needed in order to test email delivery in System Tests
+  include ActionMailer::TestHelper
+
   DRIVER = if ENV["BROWSER_TEST_DRIVER"]
     ENV["BROWSER_TEST_DRIVER"].to_sym
   else

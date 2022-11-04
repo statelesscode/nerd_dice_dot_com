@@ -39,11 +39,8 @@ module Devise
 
     test "signup fails if invalid email" do
       standard_signup_start!
+      signup_page_flow!
 
-      # sign up flow
-      click_on "Sign up" # from link in welcome
-      sign_up_page_assertions!
-      standard_signup_fill_in
       fill_in "Email", with: "TAXATION IS THEFT"
       click_on "Sign up" # button on signup
 
@@ -54,11 +51,8 @@ module Devise
 
     test "signup fails if email address has been taken" do
       standard_signup_start!
+      signup_page_flow!
 
-      # sign up flow
-      click_on "Sign up" # from link in welcome
-      sign_up_page_assertions!
-      standard_signup_fill_in
       fill_in "Email", with: users(:dm).email
       click_on "Sign up" # button on signup
 
@@ -67,11 +61,8 @@ module Devise
 
     test "signup fails if password too short" do
       standard_signup_start!
+      signup_page_flow!
 
-      # sign up flow
-      click_on "Sign up" # from link in welcome
-      sign_up_page_assertions!
-      standard_signup_fill_in
       fill_in "Password", with: "SHORT"
       fill_in "Password confirmation", with: "SHORT"
       click_on "Sign up" # button on signup
@@ -81,11 +72,8 @@ module Devise
 
     test "signup fails if passwords don't match" do
       standard_signup_start!
+      signup_page_flow!
 
-      # sign up flow
-      click_on "Sign up" # from link in welcome
-      sign_up_page_assertions!
-      standard_signup_fill_in
       fill_in "Password confirmation", with: "somethingelse"
       click_on "Sign up" # button on signup
 
@@ -105,54 +93,58 @@ module Devise
     ####################################################################
     #  Begin Helper Methods
     ####################################################################
-    # rubocop:disable Minitest/TestMethodName
-    def sign_up_page_assertions!
-      assert_text "Sign up"
-      assert_text "Password (8 characters minimum)"
-      assert_text "Password confirmation"
-    end
+    private
 
-    def standard_signup_fill_in
-      fill_in "Email", with: @new_user_email
-      fill_in "Password", with: @new_user_password
-      fill_in "Password confirmation", with: @new_user_password
-    end
+      def sign_up_page_assertions!
+        assert_text "Sign up"
+        assert_text "Password (8 characters minimum)"
+        assert_text "Password confirmation"
+      end
 
-    def happy_path_unconfirmed!
-      start_time = Time.now.utc
-      # get to sign up page and assert correct content
-      standard_signup_start!
+      def standard_signup_fill_in
+        fill_in "Email", with: @new_user_email
+        fill_in "Password", with: @new_user_password
+        fill_in "Password confirmation", with: @new_user_password
+      end
 
-      # sign up flow
-      click_on "Sign up" # from link in welcome
-      sign_up_page_assertions!
-      standard_signup_fill_in
-      click_on "Sign up" # button on signup
+      def happy_path_unconfirmed!
+        start_time = Time.now.utc
+        # this process should send the email confirmation email
+        assert_emails 1 do
+          # get to sign up page and assert correct content
+          standard_signup_start!
+          signup_page_flow!
+          click_on "Sign up" # button on signup
 
-      # assert redirection of title and text of Welcome Page not logged in state
-      welcome_page_not_logged_in_assertions!
-      # flash
-      assert_text @confirm_text
+          # assert redirection of title and text of Welcome Page not logged in state
+          welcome_page_not_logged_in_assertions!
+          # flash
+          assert_text @confirm_text
+        end
+        # assertions about the unconfirmed user
+        # implicitly returns the user
+        unconfirmed_user_assertions!(start_time)
+      end
 
-      # assertions about the unconfirmed useruser
-      # implicitly returns the user
-      unconfirmed_user_assertions!(start_time)
-    end
+      def unconfirmed_user_assertions!(start_time)
+        # get last user (need to use created due to UUID primary key)
+        unconfirmed_user = User.where("created_at >= ?", start_time).take
+        assert_nil unconfirmed_user.confirmed_at
+        assert_not_nil unconfirmed_user.confirmation_token
 
-    def unconfirmed_user_assertions!(start_time)
-      # get last user (need to use created due to UUID primary key)
-      unconfirmed_user = User.where("created_at >= ?", start_time).take
-      assert_nil unconfirmed_user.confirmed_at
-      assert_not_nil unconfirmed_user.confirmation_token
+        # return user
+        unconfirmed_user
+      end
 
-      # return user
-      unconfirmed_user
-    end
+      def standard_signup_start!
+        visit welcome_url
+        welcome_page_not_logged_in_assertions!
+      end
 
-    def standard_signup_start!
-      visit welcome_url
-      welcome_page_not_logged_in_assertions!
-    end
-    # rubocop:enable Minitest/TestMethodName
+      def signup_page_flow!
+        click_on "Sign up" # from link in welcome
+        sign_up_page_assertions!
+        standard_signup_fill_in
+      end
   end
 end

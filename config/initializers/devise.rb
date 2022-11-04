@@ -1,4 +1,4 @@
-# credit for Devise Turbo Solution solution: article
+# credit for Devise Turbo solution: article
 # Better Programming - Devise Auth Setup in Rails 7 by Nick Francisci
 # https://betterprogramming.pub/devise-auth-setup-in-rails-7-44240aaed4be
 # credit for solution: video
