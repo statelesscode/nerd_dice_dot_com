@@ -1,10 +1,10 @@
 <div>
-  <h1 class="<%= tw_h1 %>">Nerd Dice</h1>
+  <h1 class="tw_h1">Nerd Dice</h1>
   <% if current_user %>
-    <p><%= link_to "Visit the members' area", authenticated_path, class: tw_standard_link %></p>
-    <p><%= button_to "Log out", destroy_user_session_path, method: :delete, class: tw_cancel_button %></p>
+    <p><%= link_to "Visit the members' area", authenticated_path, class: 'tw_standard_link' %></p>
+    <p><%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'tw_cancel_button' %></p>
   <% else %>
-    <p><%= link_to "Sign up", new_user_registration_path, class: tw_standard_link %></p>
-    <p><%= link_to "Log in", new_user_session_path, class: tw_standard_link %></p>
+    <p><%= link_to "Sign up", new_user_registration_path, class: 'tw_standard_link' %></p>
+    <p><%= link_to "Log in", new_user_session_path, class: 'tw_standard_link' %></p>
   <% end %>
 </div>
