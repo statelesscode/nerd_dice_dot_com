@@ -1,3 +1,5 @@
+# Whenever you add a new user, add to the test_helper FIXTURE_USER_PASSWORDS
+#   constant in order for that user to be able to log in for system tests
 DEFAULTS: &DEFAULTS
   confirmed_at: <%= Time.now %>
   sign_in_count: 0

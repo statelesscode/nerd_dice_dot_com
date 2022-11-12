@@ -19,6 +19,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_text "Sign up"
     assert_text "Log in"
     assert_no_text "Visit the members' area"
+    assert_no_text "Manage your account"
     assert_no_text "Log out"
   end
 
@@ -27,6 +28,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_no_text "Sign up"
     assert_no_text "Log in"
     assert_text "Visit the members' area"
+    assert_text "Manage your account"
     assert_text "Log out"
   end
 
