@@ -31,10 +31,7 @@ module TailwindHelper
     join_classes(%w[font-bold text-3xl])
   end
 
-  # disable due to no inputs
-  # rubocop:disable Rails/OutputSafety
   def join_classes(class_array)
-    class_array.join(" ").html_safe
+    class_array.join(" ")
   end
-  # rubocop:enable Rails/OutputSafety
 end
