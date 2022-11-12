@@ -53,4 +53,17 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_text "Didn't receive confirmation instructions?"
     assert_text "Didn't receive unlock instructions?"
   end
+
+  def registrations_edit_assertions!
+    assert_text "Edit User"
+    assert_text "Email"
+    assert_selector "input#user_email[value='#{@user.email}'"
+    assert_text "Password (leave blank if you don't want to change it)"
+    assert_text "8 characters minimum"
+    assert_text "Password confirmation"
+    assert_text "Current password"
+    assert_text "(we need your current password to confirm your changes)"
+    assert_text "Cancel my account"
+    assert_text "Unhappy?"
+  end
 end

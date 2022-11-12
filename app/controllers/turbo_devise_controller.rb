@@ -17,13 +17,21 @@ class TurboDeviseController < ApplicationController
       # raise the error if get?
       raise e if get?
 
-      # return with 422 or redirect otherwise
-      if has_errors? && default_action
-        render rendering_options.merge(formats: :html, status: :unprocessable_entity)
-      else
-        redirect_to navigation_location
-      end
+      recover_from_devise_missing_template
     end
+
+    private
+
+      def recover_from_devise_missing_template
+        # return with 422 or redirect otherwise
+        if has_errors? && default_action
+          render rendering_options.merge(formats: :html, status: :unprocessable_entity)
+        elsif @controller.controller_name == "registrations" && @controller.action_name == "destroy"
+          redirect_to "/"
+        else
+          redirect_to navigation_location
+        end
+      end
   end
 
   self.responder = Responder
