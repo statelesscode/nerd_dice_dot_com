@@ -41,5 +41,5 @@
 
   <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete, class: tw_alert_button %></p>
 
-  <%= link_to "Back", :back %>
+  <%= link_to "Back", :back, class: tw_standard_link %>
 </div>

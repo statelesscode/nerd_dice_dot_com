@@ -44,7 +44,7 @@ module Devise
       fill_in "Email", with: "TAXATION IS THEFT"
       click_on "Sign up" # button on signup
 
-      error_message = page.find("#user_email").native.attribute("validationMessage")
+      error_message = get_input_validation_message("#user_email")
       assert_equal("Please include an '@' in the email address. " \
                    "'TAXATION IS THEFT' is missing an '@'.", error_message)
     end

@@ -66,4 +66,12 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     assert_text "Cancel my account"
     assert_text "Unhappy?"
   end
+
+  # Get a validation message from a page element
+  # @param current_selector the unique selector of the element to find the message for
+  #
+  # Will return the validationMessage of the element (empty string if none)
+  def get_input_validation_message(current_selector)
+    page.find(current_selector).native.attribute("validationMessage")
+  end
 end
