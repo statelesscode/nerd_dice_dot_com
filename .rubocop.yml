@@ -415,10 +415,6 @@ Style/CollectionCompact: # (new in 1.2)
 
 Style/Documentation:
   Enabled: true
-  Exclude:
-  - 'config/application.rb'
-  - 'app/helpers/*'
-  - 'app/controllers/*'
 
 Style/DocumentDynamicEvalDefinition: # (new in 1.1)
   Enabled: true

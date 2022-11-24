@@ -1,5 +1,9 @@
 require "test_helper"
 
+# Tests for the WelcomeController
+#
+# Makes assertions about both the authenticated and non-authenticated
+# behavior
 class WelcomeControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 

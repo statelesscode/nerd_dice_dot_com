@@ -6,6 +6,7 @@ module Devise
   # handling.
   ######################################################################
   class ChangePasswordTest < ApplicationSystemTestCase
+    # Start from logged in context.
     setup do
       @user = users(:player)
       @current_password = FIXTURE_USER_PASSWORDS[@user.email]
@@ -67,6 +68,13 @@ module Devise
     ####################################################################
     private
 
+      # This method navigates you to the registrations#edit page and
+      # sets up the state of the form to match it being filled out
+      # correctly and just about to hit Update
+      #
+      # To test other scenarios, you call this method first to get the
+      # form to the happy path state and then overwrite the specific
+      # attributes you want to change with another fill_in call
       def standard_password_edit_preconditions!
         welcome_page_logged_in_assertions!
         click_on "Manage your account"

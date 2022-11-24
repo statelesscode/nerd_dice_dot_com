@@ -10,6 +10,7 @@ module Devise
   #   then changes the field(s) needed to create the error condition(s)
   ######################################################################
   class UserSignUpTest < ApplicationSystemTestCase
+    # uses a brand new user that is not one of the User fixtures
     setup do
       @new_user_email = "anewuser@example.com"
       @new_user_password = "testing1new3user2flow"
@@ -17,6 +18,15 @@ module Devise
                       "Please follow the link to activate your account."
     end
 
+    # User sign up "happy path"
+    # * Call happy_path_unconfirmed! to get to the point where the
+    #   User is created but unconfirmed
+    # * Confirm the user by visiting the user_confirmation_url with the
+    #   correct token
+    # * Log in with the user's credential to ensure the user can log in
+    #   after confirming
+    # * Make assertions about the state of the confirmed User
+    # * Test that the user can visit the Authenticated URL
     test "signing up and confirming new user" do
       user = happy_path_unconfirmed!
       # confirm the user
@@ -44,6 +54,7 @@ module Devise
       fill_in "Email", with: "TAXATION IS THEFT"
       click_on "Sign up" # button on signup
 
+      # causes a native HTML5 form validation error
       error_message = get_input_validation_message("#user_email")
       assert_equal("Please include an '@' in the email address. " \
                    "'TAXATION IS THEFT' is missing an '@'.", error_message)
@@ -101,12 +112,24 @@ module Devise
         assert_text "Password confirmation"
       end
 
+      # Fills in the form with happy path data.
+      # Error scenarios override one or more fields by filling in new
+      # values after calling this method.
       def standard_signup_fill_in
         fill_in "Email", with: @new_user_email
         fill_in "Password", with: @new_user_password
         fill_in "Password confirmation", with: @new_user_password
       end
 
+      # Follows through the happy path from the beginning until after
+      # hitting Sign up when the user is about to be confirmed
+      # * Take the start time to get the first user created on or after
+      #   the start time
+      # * Fill out the sign up form correctly and click on the Sign up
+      #   button
+      # * Assert that the confirmation email gets sent to the user
+      # * Calls unconfirmed_user_assertions! to make assertions about
+      #   the state of the unconfirmed user
       def happy_path_unconfirmed!
         start_time = Time.now.utc
         # this process should send the email confirmation email
@@ -126,6 +149,8 @@ module Devise
         unconfirmed_user_assertions!(start_time)
       end
 
+      # Make assertions about the state of the newly created and
+      # unconfirmed user
       def unconfirmed_user_assertions!(start_time)
         # get last user (need to use created due to UUID primary key)
         unconfirmed_user = User.where("created_at >= ?", start_time).take
@@ -136,11 +161,16 @@ module Devise
         unconfirmed_user
       end
 
+      # Get the user to the welcome URL and make assertions about the
+      # welcome page
       def standard_signup_start!
         visit welcome_url
         welcome_page_not_logged_in_assertions!
       end
 
+      # Get the user to the signup page, make assertions about its
+      # state, and then call standard_signup_fill_in to get the form
+      # prepared and filled out correctly
       def signup_page_flow!
         click_on "Sign up" # from link in welcome
         sign_up_page_assertions!

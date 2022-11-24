@@ -10,6 +10,7 @@ module Devise
   #   then changes the field(s) needed to create the error condition(s)
   ######################################################################
   class ResetPasswordTest < ApplicationSystemTestCase
+    # starts from non-logged in state
     setup do
       @user = users(:dm)
       @new_password = "Freddie91Mercury"
@@ -66,6 +67,21 @@ module Devise
     ####################################################################
     private
 
+      # Gets the reset password workflow filled out with the "happy
+      # path" scenario just before hitting submit on the password reset
+      # page after successfully confirming the token. The state of the
+      # form is overridden by the unhappy path tests by changing the
+      # value(s) of the fields to set up the error scenarios.
+      # * Call standard_reset_password_preconditions! to navigate the
+      #   user to the forgot password page
+      # * Call good_email_flow! to fill in the forgot password page
+      #   correctly and assert that the reset password email was sent
+      # * Call good_token_flow! to correctly visit the edit password
+      #   page with a valid token
+      # * Call change_password_page_assertions! to assert the proper
+      #   state of the reset password page
+      # * Call standard_password_reset_fill_in to get the reset
+      #   password form filled out correctly but not submitted
       def happy_path_about_to_hit_submit!
         standard_reset_password_preconditions!
         assert_emails 1 do
@@ -76,6 +92,8 @@ module Devise
         standard_password_reset_fill_in
       end
 
+      # Navigates the user to the forgot password page and makes
+      # assertions about the correct states of the pages visited
       def standard_reset_password_preconditions!
         assert_nil @user.reset_password_token
         visit welcome_url
@@ -90,6 +108,8 @@ module Devise
         assert_text "Didn't receive unlock instructions?"
       end
 
+      # Makes assertions about the correct state of the reset password
+      # page
       def change_password_page_assertions!
         assert_text "Change your password"
         assert_text "Log in"
@@ -98,6 +118,9 @@ module Devise
         assert_text "Didn't receive unlock instructions?"
       end
 
+      # Fills in the forgot password page with the correct email and
+      # asserts that the user has a reset_password_token populated with
+      # the correct flash message displayed
       def good_email_flow!
         fill_in "Email", with: @user.email
         click_on "Send me reset password instructions"
@@ -108,12 +131,17 @@ module Devise
         assert_not_nil @user.reset_password_token
       end
 
+      # Harvests the password reset token from the last delivered email
+      # and uses it to visit the edit_user_password_url
       def good_token_flow!
         token = get_token_from_email(ActionMailer::Base.deliveries.last, "reset_password_token")
         # confirm the user
         visit edit_user_password_url(reset_password_token: token)
       end
 
+      # Fills in the new password for the user with the intended new
+      # password. Other tests can change the values to get the form to
+      # a different state afterward.
       def standard_password_reset_fill_in
         fill_in "New password", with: @new_password
         fill_in "Confirm new password", with: @new_password

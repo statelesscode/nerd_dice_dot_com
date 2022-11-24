@@ -4,9 +4,10 @@ module Devise
   ######################################################################
   # System test for user account cancellation
   # * Includes testing of the confirmation which is broken by default
-  #   with Devise and Turbo
+  #   with Devise and Turbo as-of Rails 7.0.4 and Devise 4.8.1
   ######################################################################
   class CancelUserRegistrationTest < ApplicationSystemTestCase
+    # tests will start from a logged in user state
     setup do
       @user = users(:player)
       login_with_user!(@user)
@@ -14,6 +15,7 @@ module Devise
 
     test "user can successfully cancel registration" do
       standard_cancel_user_preconditions!
+      # track count to ensure it decreases
       previous_count = User.count
       page.accept_confirm do
         click_on "Cancel my account"
@@ -42,6 +44,8 @@ module Devise
     ####################################################################
     private
 
+      # Ensure the user is navigated to the correct page with the
+      # correct content
       def standard_cancel_user_preconditions!
         welcome_page_logged_in_assertions!
         click_on "Manage your account"

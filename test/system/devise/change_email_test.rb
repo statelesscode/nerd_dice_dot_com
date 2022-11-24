@@ -5,10 +5,14 @@ module Devise
   ######################################################################
   # System test for user password and email change processes and error
   # handling.
+  #
+  # Uses the EmailChangeable concern for shared helper_methods that are
+  # called in the bodies of the tests
   ######################################################################
   class ChangeEmailTest < ApplicationSystemTestCase
     include EmailChangeable
 
+    # setup method is in EmailChangeable. Start logged in.
     setup do
       common_email_setup
     end
@@ -16,6 +20,7 @@ module Devise
     test "user can change email to a valid address" do
       email_change_happy_path_unconfirmed!
 
+      # tests that it follows the expectations for a logged in user
       valid_confirmation!(true)
     end
 
@@ -25,6 +30,7 @@ module Devise
 
       click_on "Update"
 
+      # defined in ApplicationSystemTestCase
       error_message = get_input_validation_message("#user_email")
       assert_equal("Please include an '@' in the email address. " \
                    "'TAXATION IS THEFT' is missing an '@'.", error_message)

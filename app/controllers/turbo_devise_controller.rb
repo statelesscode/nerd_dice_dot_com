@@ -10,6 +10,9 @@
 #            with Turbo without requiring workarounds
 #######################################################################
 class TurboDeviseController < ApplicationController
+  # The responder class is where we handle TurboStream responses and
+  # recover from missing template situations by rendering the :html
+  # version, return a 422 instead of 200, or redirect as needed
   class Responder < ActionController::Responder
     def to_turbo_stream
       controller.render(options.merge(formats: :html))

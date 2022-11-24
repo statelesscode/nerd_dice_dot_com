@@ -10,6 +10,8 @@ module Devise
       @user = users(:dm)
     end
 
+    # Uses the login_with_user! method in ApplicationSystemTestCase.
+    # It was refactored out of this method after implementing the test
     test "user can log in" do
       login_with_user!(@user)
       # flash
@@ -37,6 +39,8 @@ module Devise
       login_with_user!(@user)
       click_on "Log out"
       assert_text "Signed out successfully."
+      # Attempt to visit authenticated_url as non-logged in user.
+      # Will redirect back to the root_url with an alert flash
       visit authenticated_url
       assert_text "You need to sign in or sign up before continuing."
       login_page_assertions!

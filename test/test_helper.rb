@@ -1,7 +1,10 @@
 ENV["RAILS_ENV"] ||= "test"
 
+# Require and start of SimpleCov MUST take place prior to requiring the
+# application code
 require "simplecov"
 
+# SimpleCov configuration for Rails and Coveralls
 SimpleCov.start "rails" do
   if ENV["CI"]
     require "simplecov-lcov"

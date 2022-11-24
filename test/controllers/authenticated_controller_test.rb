@@ -1,5 +1,9 @@
 require "test_helper"
 
+# Tests for the AuthenticatedController
+#
+# Makes assertions about both the authenticated and non-authenticated
+# behavior
 class AuthenticatedControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 

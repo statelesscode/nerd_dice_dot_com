@@ -1,3 +1,11 @@
+# Tests for the TailwindHelper methods
+#
+# While these might seem a bit tedious and pointless, they are handy
+# for ensuring that refactoring the Helpers produces the intended
+# results.
+#
+# In the event that the TailwindHelper is broken down into more modular
+# code files, the tests should be restructured to match
 class TailwindHelperTest < ActionView::TestCase
   test "tw_success_button works as intended" do
     assert_equal "font-semibold text-gray-100 bg-blue-500 hover:bg-blue-800 " \

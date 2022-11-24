@@ -14,6 +14,7 @@ module Devise
     end
 
     test "can reconfirm after invalid token" do
+      # method defined in EmailChangeable
       email_change_happy_path_unconfirmed!
 
       # confirm the user with an invalid token
@@ -46,6 +47,16 @@ module Devise
     ####################################################################
     private
 
+      # Shared logic for attempting to reconfirm from a logged out state
+      # * Get the email change to the point where it sends the email
+      # * Click on back to return to the root URL
+      # * Click on the Log In button and then the "Didn't receive
+      #   confirmation instructions?" link
+      # * Call reconfirm! to setup the reconfirm page and hit the button
+      # * Call the valid_confirmation! method from EmailChangeable to
+      #   validate the behavior after confirming for a logged-out user
+      #
+      # @param email the email to fill in the form with
       def logged_out_reconfirm!(email)
         email_change_happy_path_unconfirmed!
 
@@ -61,6 +72,11 @@ module Devise
         valid_confirmation!(false)
       end
 
+      # Makes assertions about the state of the reconfirm email page,
+      # fills out the reconfirm email form with the intended email, and
+      # clicks the button to resend the instructions
+      #
+      # @param email the email to fill in the form with
       def reconfirm!(email)
         assert_text "Resend confirmation instructions"
         # reconfirm the email
