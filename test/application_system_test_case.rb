@@ -57,7 +57,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   def registrations_edit_assertions!
     assert_text "Edit User"
     assert_text "Email"
-    assert_selector "input#user_email[value='#{@user.email}'"
+    assert_selector "input#user_email[value='#{@user.email}']"
     assert_text "Password (leave blank if you don't want to change it)"
     assert_text "8 characters minimum"
     assert_text "Password confirmation"
