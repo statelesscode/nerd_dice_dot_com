@@ -148,10 +148,10 @@ module Devise
       def unlock_with_resend!
         resend_page_assertions_and_setup!
 
-        click_on "Resend unlock instructions"
+        await_jobs do
+          click_on "Resend unlock instructions"
+        end
 
-        # allow time for emails to catch up
-        sleep 0.1
         new_unlock_email = ActionMailer::Base.deliveries.last
         new_unlock_token = get_token_from_email(new_unlock_email, "unlock_token")
 

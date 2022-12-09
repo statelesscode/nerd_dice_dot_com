@@ -172,7 +172,9 @@ module Devise
       # state, and then call standard_signup_fill_in to get the form
       # prepared and filled out correctly
       def signup_page_flow!
-        click_on "Sign up" # from link in welcome
+        await_jobs do
+          click_on "Sign up" # from link in welcome
+        end
         sign_up_page_assertions!
         standard_signup_fill_in
       end

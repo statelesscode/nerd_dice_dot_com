@@ -108,4 +108,18 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   def get_input_validation_message(current_selector)
     page.find(current_selector).native.attribute("validationMessage")
   end
+
+  # Exectutes a block and then sleeps for a default or specified amount of time
+  #
+  # This is needed for an example situation where a SystemTestCase would send an
+  # email and there is a race condition where the next line of code that needs
+  # the email to be sent executes without the email being added to to the
+  # ActionMailer::Base.deliveries array.
+  #
+  # @param sleep_time DEFAULT 0.05 the amount of time in seconds to sleep after
+  # yielding the block
+  def await_jobs(sleep_time = 0.05)
+    yield
+    sleep sleep_time
+  end
 end

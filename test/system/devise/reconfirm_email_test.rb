@@ -81,7 +81,9 @@ module Devise
         assert_text "Resend confirmation instructions"
         # reconfirm the email
         fill_in "Email", with: email
-        click_on "Resend confirmation instructions"
+        await_jobs do
+          click_on "Resend confirmation instructions"
+        end
       end
   end
 end

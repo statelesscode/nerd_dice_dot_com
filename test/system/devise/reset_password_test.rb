@@ -27,7 +27,9 @@ module Devise
       standard_reset_password_preconditions!
       fill_in "Email", with: "bademail@example.com"
       assert_no_emails do
-        click_on "Send me reset password instructions"
+        await_jobs do
+          click_on "Send me reset password instructions"
+        end
       end
       assert_text "Email not found"
     end
@@ -123,7 +125,9 @@ module Devise
       # the correct flash message displayed
       def good_email_flow!
         fill_in "Email", with: @user.email
-        click_on "Send me reset password instructions"
+        await_jobs do
+          click_on "Send me reset password instructions"
+        end
         assert_text "You will receive an email with instructions on how to reset " \
                     "your password in a few minutes."
         # reload user and assert password token no longer nil

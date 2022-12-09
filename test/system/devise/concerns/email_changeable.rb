@@ -39,8 +39,7 @@ module Devise
         @old_email = @user.email
         standard_email_edit_preconditions!
 
-        click_on "Update"
-        assert_text @email_validation_flash
+        update_and_assert_flash!
 
         revisit_registrations_edit!
 
@@ -89,6 +88,15 @@ module Devise
         else
           login_page_assertions!
         end
+      end
+
+      # Clicks on the update button on the email edit page and asserts
+      # the email validation flash is present
+      def update_and_assert_flash!
+        await_jobs do
+          click_on "Update"
+        end
+        assert_text @email_validation_flash
       end
   end
 end
