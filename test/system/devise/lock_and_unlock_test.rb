@@ -10,17 +10,20 @@ module Devise
       @user = users(:player)
       @user.update(failed_attempts: 9)
       @bad_password = "Gygax"
+      @paranoid_error = "Invalid Email or password"
+      @paranoid_unlock_instructions = "If your account exists, you will " \
+                                      "receive an email with instructions for how to unlock it in a few minutes."
     end
 
-    test "warns user with one failed attempt left" do
+    test "provides no feedback if one attempt left" do
       # Change failed attempts back to 8 to test the message for the
       # ninth attempt
       @user.update(failed_attempts: 8)
       login_with_credentials!(@user.email, @bad_password)
 
       # flash message
-      assert_text "You have one more attempt before your account is locked."
-      # still on login pate
+      assert_text @paranoid_error
+      # still on login page
       login_page_assertions!
     end
 
@@ -73,21 +76,23 @@ module Devise
       unlock_with_resend!
     end
 
-    test "errors out if you try to resend unlock instructions to a bad email" do
+    test "provides no feedback if you try to resend unlock instructions to a bad email" do
       lock_account_and_demonstrate_behavior!
 
       click_on "Didn't receive unlock instructions?"
 
       resend_page_assertions_and_setup!
 
-      fill_in "Email", with: "bogus.email@example.com"
+      assert_no_emails do
+        fill_in "Email", with: "bogus.email@example.com"
 
-      click_on "Resend unlock instructions"
+        click_on "Resend unlock instructions"
+      end
 
-      assert_text "Email not found"
+      # redirects to login page with no feedback
+      assert_text @paranoid_unlock_instructions
 
-      # still on resend unlock instructions page
-      resend_page_assertions_and_setup!
+      login_page_assertions!
     end
 
     private
@@ -111,7 +116,7 @@ module Devise
         login_with_credentials!(@user.email, @bad_password)
 
         # flash message
-        assert_text "Your account is locked."
+        assert_text @paranoid_error
         login_page_assertions!
 
         user_post_lock_assertions_and_get_token!
@@ -119,7 +124,7 @@ module Devise
         # now user cannot log in even with valid credentials
         login_with_user!(@user)
         # flash message
-        assert_text "Your account is locked."
+        assert_text @paranoid_error
         login_page_assertions!
       end
 

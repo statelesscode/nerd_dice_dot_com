@@ -1,5 +1,4 @@
 require "test_helper"
-require "./app/helpers/tailwind_helper"
 
 module TailwindHelper
   # Tests for the TailwindHelper::ButtonHelper methods

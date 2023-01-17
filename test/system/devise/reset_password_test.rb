@@ -14,6 +14,8 @@ module Devise
     setup do
       @user = users(:dm)
       @new_password = "Freddie91Mercury"
+      @paranoid_instructions = "If your email address exists in our database, you " \
+                               "will receive a password recovery link at your email address in a few minutes."
     end
 
     test "user can reset password with valid email and token" do
@@ -31,7 +33,7 @@ module Devise
           click_on "Send me reset password instructions"
         end
       end
-      assert_text "Email not found"
+      assert_text @paranoid_instructions
     end
 
     test "user cannot reset password with an invalid token" do
@@ -128,8 +130,7 @@ module Devise
         await_jobs do
           click_on "Send me reset password instructions"
         end
-        assert_text "You will receive an email with instructions on how to reset " \
-                    "your password in a few minutes."
+        assert_text @paranoid_instructions
         # reload user and assert password token no longer nil
         @user.reload
         assert_not_nil @user.reset_password_token
