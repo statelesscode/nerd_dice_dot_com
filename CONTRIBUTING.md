@@ -4,7 +4,7 @@ Thank you for visiting the NerdDice.com repository and for taking interest in co
 
 <a name="before-you-start"></a>
 ## Before you start...
-Everything in this repository is intended to be made freely available via the [UNLICENSE](UNLICENSE.txt) and the [Creative Commons](https://creativecommons.org) [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/). You can obviously submit feature requests and issues and participate in the discussions, but we can\'t accept anything into this repository and project unless you agree to make it available under the terms above. There may be exceptions to this like open gaming spell descriptions and the like, but they should be labeled appropriately so we can call them out in our [README](README.md).
+Everything in this repository is intended to be made freely available via the [UNLICENSE](UNLICENSE.txt) and the [Creative Commons](https://creativecommons.org) [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/). You can obviously submit feature requests and issues and participate in the discussions, but we can\'t accept anything into this repository and project unless you agree to make it available under the terms above. There may be exceptions to this like open gaming spell descriptions and the like, but they should be labeled appropriately so we can call them out in our [README](README.md#legal).
 
 ### Coding Videos
 We make [coding videos](https://youtube.com/playlist?list=PL9kkbu1kLUeMJFb0GT8ZMzrsSKJaxjOKH) on our [YouTube channel](https://www.youtube.com/statelesscode) for the end-to-end of this project. If you collaborate on this project, you are consenting to potentially have the interaction featured in our videos. There is no guarantee or obligation to include your contribution or interaction in our videos, and we reserve the right to moderate inappropriate content at our own discretion.
@@ -101,6 +101,4 @@ If you have art, design, or other forms of creative input on the project that do
 
 <a name="guidelines-for-etiquette"></a>
 ## Guidelines for etiquette
-Just be polite and courteous in your interactions. It is possible to disagree passionately about ideas without making it personal. You can make a point without using language that leads to escalation. Nobody working on this project is perfect. In the event that something goes wrong, seek forgiveness and reconciliation with one another. **[Mercy triumphs over judgment](https://www.biblegateway.com/passage/?search=James+2&version=ESV)**.
-
-We welcome and encourage your participation in this open-source project. We welcome those of all backgrounds and abilities, but we refuse to adopt the Contributor Covenant or any similar code of conduct for reasons outlined in [BURN_THE_CONTRIBUTOR_COVENANT_WITH_FIRE](BURN_THE_CONTRIBUTOR_COVENANT_WITH_FIRE.md). We welcome those who disagree about codes of conduct to contribute to this project, but we want to make it abundantly clear that Code of Conduct Trolls have no power here.
+See the [Conduct](README.md#conduct) section in the README for more information.
