@@ -23,6 +23,7 @@ module Devise
       # flash message
       assert_text "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       welcome_page_not_logged_in_assertions!
+
       assert_equal previous_count - 1, User.count, "Expected User.count to decrease by 1"
     end
 

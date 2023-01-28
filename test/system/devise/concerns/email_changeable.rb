@@ -44,6 +44,7 @@ module Devise
         revisit_registrations_edit!
 
         @user.reload
+
         assert_equal @new_email, @user.unconfirmed_email, "Expected unconfirmed_email to equal email from form"
         assert_not_nil @user.confirmation_token
         assert_equal @old_email, @user.email, "Expected old email to remain if unconfirmed"
@@ -54,6 +55,7 @@ module Devise
       def revisit_registrations_edit!
         click_on "Manage your account"
         registrations_edit_assertions!
+
         assert_text "Currently waiting confirmation for: #{@new_email}"
       end
 
@@ -68,6 +70,7 @@ module Devise
         # flash
         assert_text "Your email address has been successfully confirmed."
         @user.reload
+
         assert_equal @new_email, @user.email, "Expected email to equal email from form after confirmation"
 
         confirmation_context_assertions!(logged_in)
@@ -96,6 +99,7 @@ module Devise
         await_jobs do
           click_on "Update"
         end
+
         assert_text @email_validation_flash
       end
   end

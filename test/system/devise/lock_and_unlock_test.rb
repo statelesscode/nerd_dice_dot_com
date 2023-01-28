@@ -191,6 +191,7 @@ module Devise
       # * Sets the @unlock_email and @unlock_token instance variables
       def user_post_lock_assertions_and_get_token!
         @user.reload
+
         assert_not_nil @user.locked_at, "Expected locked_at not to be nil after lock"
         assert_not_nil @user.unlock_token, "Expected unlock_token not to be nil after lock"
 

@@ -21,6 +21,7 @@ module Devise
     test "user can reset password with valid email and token" do
       happy_path_about_to_hit_submit!
       click_on "Change my password"
+
       assert_text "Your password has been changed successfully. You are now signed in."
       welcome_page_logged_in_assertions!
     end
@@ -46,6 +47,7 @@ module Devise
       change_password_page_assertions!
       standard_password_reset_fill_in
       click_on "Change my password"
+
       assert_text "Reset password token is invalid"
     end
 
@@ -54,6 +56,7 @@ module Devise
       # fill in a non-matching password
       fill_in "Confirm new password", with: "Brian99May"
       click_on "Change my password"
+
       assert_text "Password confirmation doesn't match Password"
     end
 
@@ -63,6 +66,7 @@ module Devise
       fill_in "New password", with: "SHORT"
       fill_in "Confirm new password", with: "SHORT"
       click_on "Change my password"
+
       assert_text "Password is too short (minimum is 8 characters)"
     end
 
@@ -130,9 +134,11 @@ module Devise
         await_jobs do
           click_on "Send me reset password instructions"
         end
+
         assert_text @paranoid_instructions
         # reload user and assert password token no longer nil
         @user.reload
+
         assert_not_nil @user.reset_password_token
       end
 

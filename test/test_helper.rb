@@ -69,7 +69,7 @@ module ActiveSupport
     #
     # Will return the matching token from the email ("ab3dre9-dhefh" in example above)
     def get_token_from_email(email, token_key)
-      email.body.raw_source.match(/#{token_key}=[\w\-]+/).to_s.split("=")[1]
+      email.body.raw_source.match(/#{token_key}=[\w-]+/).to_s.split("=")[1]
     end
   end
 end

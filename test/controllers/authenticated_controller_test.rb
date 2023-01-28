@@ -10,6 +10,7 @@ class AuthenticatedControllerTest < ActionDispatch::IntegrationTest
   test "should get index if authenticated" do
     sign_in users(:player)
     get authenticated_url
+
     assert_response :success
 
     assert_select "p", "Back to welcome page"

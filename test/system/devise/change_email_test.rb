@@ -32,6 +32,7 @@ module Devise
 
       # defined in ApplicationSystemTestCase
       error_message = get_input_validation_message("#user_email")
+
       assert_equal("Please include an '@' in the email address. " \
                    "'TAXATION IS THEFT' is missing an '@'.", error_message)
     end

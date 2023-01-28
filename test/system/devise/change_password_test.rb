@@ -17,6 +17,7 @@ module Devise
     test "user can change password to another valid password" do
       standard_password_edit_preconditions!
       click_on "Update"
+
       assert_text "Your account has been updated successfully."
       welcome_page_logged_in_assertions!
     end
@@ -59,6 +60,7 @@ module Devise
       fill_in "Password", with: @current_password
       fill_in "Password confirmation", with: @current_password
       click_on "Update"
+
       assert_text "Your account has been updated successfully."
       welcome_page_logged_in_assertions!
     end

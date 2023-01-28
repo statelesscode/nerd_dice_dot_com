@@ -37,13 +37,16 @@ module Devise
       login_with_credentials!(@new_user_email, @new_user_password)
       # back to welcome page but logged in
       welcome_page_logged_in_assertions!
+
       assert_text "Signed in successfully."
 
       # assertions about the state of the user
       user.reload
+
       assert_not_nil user.confirmed_at
       assert_not_nil user.remember_created_at
       click_on "Visit the members' area"
+
       assert_text "Authenticated#index"
     end
 
@@ -56,6 +59,7 @@ module Devise
 
       # causes a native HTML5 form validation error
       error_message = get_input_validation_message("#user_email")
+
       assert_equal("Please include an '@' in the email address. " \
                    "'TAXATION IS THEFT' is missing an '@'.", error_message)
     end
@@ -154,6 +158,7 @@ module Devise
       def unconfirmed_user_assertions!(start_time)
         # get last user (need to use created due to UUID primary key)
         unconfirmed_user = User.where("created_at >= ?", start_time).take
+
         assert_nil unconfirmed_user.confirmed_at
         assert_not_nil unconfirmed_user.confirmation_token
 

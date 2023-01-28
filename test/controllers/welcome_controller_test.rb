@@ -9,6 +9,7 @@ class WelcomeControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index for non-logged in user" do
     get welcome_url
+
     assert_response :success
 
     assert_select "h1", "Nerd Dice"
@@ -23,6 +24,7 @@ class WelcomeControllerTest < ActionDispatch::IntegrationTest
   test "should get index for logged in user" do
     sign_in users(:dm)
     get welcome_url
+
     assert_response :success
 
     assert_select "h1", "Nerd Dice"
