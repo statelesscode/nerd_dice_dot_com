@@ -8,6 +8,7 @@ module Devise
   class LogInLogOutTest < ApplicationSystemTestCase
     setup do
       @user = users(:dm)
+      @invalid_login_attempt_message = "Invalid Email or password."
     end
 
     # Uses the login_with_user! method in ApplicationSystemTestCase.
@@ -24,14 +25,14 @@ module Devise
     test "provides error message if email is blank" do
       login_with_credentials!("", "something")
       # flash
-      assert_text "You need to sign in or sign up before continuing."
+      assert_text @invalid_login_attempt_message
       login_page_assertions!
     end
 
     test "provides error message if password is incorrect" do
       login_with_credentials!(@user.email, "something")
       # flash
-      assert_text "Invalid Email or password."
+      assert_text @invalid_login_attempt_message
       login_page_assertions!
     end
 

@@ -31,7 +31,7 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 
 # Use Devise for User web authentication
-gem "devise", "~> 4.8.1"
+gem "devise", "~> 4.9.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
