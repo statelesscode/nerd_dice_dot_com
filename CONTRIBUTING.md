@@ -20,7 +20,7 @@ There are numerous ways to contribute to this project, irrespective of your leve
 
 <a name="feature-requests"></a>
 ### Feature requests
-If you have an idea for a feature you would like to see in the NerdDice.com app, feel free to [open an issue](https://github.com/statelesscode/nerd_dice/issues) in this GitHub repository. As an agile project, we strive to provide value. The better you can articulate your idea and the value it would bring to you as a user \(Game Master, player, interested observer\) it will help us determine whether or how to prioritize the idea.
+If you have an idea for a feature you would like to see in the NerdDice.com app, feel free to [open an issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) in this GitHub repository. As an agile project, we strive to provide value. The better you can articulate your idea and the value it would bring to you as a user \(Game Master, player, interested observer\) it will help us determine whether or how to prioritize the idea.
 
 Once an issue is submitted, we will likely need to discuss and clarify the feature request via comments to refine and clarify the intent, scope, and value of the feature. Precisely articulating your original feature request will help reduce the back-and-forth necessary to evaluate the story for implementation.
 
@@ -30,7 +30,7 @@ We can\'t guarantee that your feature request will be implemented or featured in
 ### Bug reports
 The distinction between a feature and a bug can sometimes be murky. While a feature generally refers to a request for new functionality, a bug is related to existing functionality that is not working as intended. In order to better evaluate the bug for a fix, it is extremely helpful to follow the following format:
 #### Expected behavior
-How you as a user or a technical evaluator would expect the application to behave. Expectation is obviously subjective, but defining your expectations as a user can help to expose usability problems with the application. If you discover a bug, we warmly welcome you to [open an issue](https://github.com/statelesscode/nerd_dice/issues) in this GitHub repository unless it is a [security bug](#security-bugs) that could be exploited and is not suitable for public collaboration.
+How you as a user or a technical evaluator would expect the application to behave. Expectation is obviously subjective, but defining your expectations as a user can help to expose usability problems with the application. If you discover a bug, we warmly welcome you to [open an issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) in this GitHub repository unless it is a [security bug](#security-bugs) that could be exploited and is not suitable for public collaboration.
 
 **Examples:**
 - When I click on the X to dismiss a flash message after signing up for an account, I expect the flash message to disappear from the screen.
@@ -65,14 +65,14 @@ If you discover a security vulnerability in the application that can be exploite
 ### Code contributions
 At Stateless Code our motto is \"Code Along\" and we mean it. If you have a feature that you want to implement yourself and contribute to the project, or you see an item in the [project backlog](https://github.com/orgs/statelesscode/projects/1) that you want to try and tackle yourself, you are encouraged to do so.
 #### Open an issue, if applicable
-If there's a brand new feature you want to propose, or you want to work on a backlog item that is not yet converted into an issue, you can [open an issue](https://github.com/statelesscode/nerd_dice/issues) in this GitHub repository as you would in the sections above.
+If there's a brand new feature you want to propose, or you want to work on a backlog item that is not yet converted into an issue, you can [open an issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) in this GitHub repository as you would in the sections above.
 #### Fork the repository
 To work on your changes, you will want to [fork this repository](https://github.com/statelesscode/nerd_dice_dot_com/fork) into a repo on your own account so you can work and iterate on your feature.
 #### Develop the feature
 Once you have forked the repo, you can work to develop the contribution on your account. As you are working on your contribution you can commit as frequently as you'd like. \(We'll likely squash the commit down if and when it becomes time to merge the feature.\) In order to avoid rework, be sure to follow the [coding standards](#coding-standards) below. If the pull request is a candidate for merging, we will review the code and iterate on any feedback as needed.
 <a name="coding-standards"></a>
 #### Coding standards
-Just like Ruby on Rails is able to increase programmer happiness by using convention over configuration, it\'s important to follow a consistent set of conventions throughout the code base to make it more consistent and maintainable. Some of these standards are just preferences while others \(like writing good tests\) are indispensable. If you feel strongly that one of these conventions should be modified and have good reasons to back it up, cordial conversation in an [issue](https://github.com/statelesscode/nerd_dice/issues) can be productive. I don\'t have all the answers and am constantly learning and evolving as a programmer myself. Just don\'t be a jerk about it.
+Just like Ruby on Rails is able to increase programmer happiness by using convention over configuration, it\'s important to follow a consistent set of conventions throughout the code base to make it more consistent and maintainable. Some of these standards are just preferences while others \(like writing good tests\) are indispensable. If you feel strongly that one of these conventions should be modified and have good reasons to back it up, cordial conversation in an [issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) can be productive. I don\'t have all the answers and am constantly learning and evolving as a programmer myself. Just don\'t be a jerk about it.
 ##### Always cover your code with good tests!
 Whenever it\'s possible and feasible, we recommend using a test-driven development approach \(red, green, refactor\) . We have a video on [Why Test Driven Development](https://youtu.be/AGXfZP-EhKo) on our [YouTube channel](https://www.youtube.com/statelesscode) if you\'d like to learn more.
 - Write your failing test
@@ -93,11 +93,11 @@ One of the common mottoes in the Rails ecosystem is Don\'t Repeat Yourself \(DRY
 When you\'re incrementally working on a story, it's fine to use the one-line `git commit -m "My commit message"` method of committing your code. When you squash it down at the end of the pull request, you want a good commit message for your contribution. There are many great resources on the internet about writing quality commit messages. [This one from cbeams](https://cbea.ms/git-commit/) is one of my favorites.
 <a name="documentation-contributions"></a>
 ### Documentation contributions
-You don\'t need to be a programmer to contribute to the project! If you have suggestions for clarity on documentation for the project \(as small as fixing a typo or as big as setting up a Wiki category\) you are welcome to contribute. If you aren\'t interested in learning about GitHub, git, or the version control process, you can still [open an issue](https://github.com/statelesscode/nerd_dice/issues) in this GitHub repository and provide your content contributions there. Of course, if you are comfortable with the pull request process from the [code contributions](#code-contributions) section, you are welcome to do so. We just don\'t want that to be a barrier to entry.
+You don\'t need to be a programmer to contribute to the project! If you have suggestions for clarity on documentation for the project \(as small as fixing a typo or as big as setting up a Wiki category\) you are welcome to contribute. If you aren\'t interested in learning about GitHub, git, or the version control process, you can still [open an issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) in this GitHub repository and provide your content contributions there. Of course, if you are comfortable with the pull request process from the [code contributions](#code-contributions) section, you are welcome to do so. We just don\'t want that to be a barrier to entry.
 
 <a name="art-design-creative-input"></a>
 ### Art, design and creative input
-If you have art, design, or other forms of creative input on the project that don\'t fit the above criteria, you can [open an issue](https://github.com/statelesscode/nerd_dice/issues) in this GitHub repository for that as well. As noted in the [Before you start...](#before-you-start) section, we can\'t accept any contributions unless you agree to match them to the repository standards of CC0 and/or the UNLICENSE.
+If you have art, design, or other forms of creative input on the project that don\'t fit the above criteria, you can [open an issue](https://github.com/statelesscode/nerd_dice_dot_com/issues) in this GitHub repository for that as well. As noted in the [Before you start...](#before-you-start) section, we can\'t accept any contributions unless you agree to match them to the repository standards of CC0 and/or the UNLICENSE.
 
 <a name="guidelines-for-etiquette"></a>
 ## Guidelines for etiquette
