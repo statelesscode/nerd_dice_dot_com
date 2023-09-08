@@ -80,7 +80,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
 
   # test coverage
   gem "coveralls_reborn", "~> 0.25.0", require: false
