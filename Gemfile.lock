@@ -251,8 +251,10 @@ GEM
       railties (>= 6.0.0)
     stringio (3.0.8)
     sync (0.5.0)
-    tailwindcss-rails (2.0.30-x86_64-linux)
-      railties (>= 6.0.0)
+    tailwindcss-rails (4.2.2)
+      railties (>= 7.0.0)
+      tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.4-x86_64-linux-gnu)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
     thor (1.3.2)
@@ -308,7 +310,7 @@ DEPENDENCIES
   simplecov-lcov (~> 0.8.0)
   sprockets-rails
   stimulus-rails
-  tailwindcss-rails
+  tailwindcss-rails (~> 4.0)
   turbo-rails
   tzinfo-data
   web-console
