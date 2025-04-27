@@ -5,4 +5,5 @@
 # default behavior in your minority of controllers that do not use the
 # default
 class ApplicationController < ActionController::Base
+  allow_browser versions: :modern
 end

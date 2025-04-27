@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.4.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5"
+gem "rails", "~> 7.2.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -32,11 +32,6 @@ gem "jbuilder"
 
 # Use Devise for User web authentication
 gem "devise", "~> 4.9.4"
-
-# remove after upgrading ONLY for getting 7.0 passing
-gem "bigdecimal"
-gem "drb"
-gem "mutex_m"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
