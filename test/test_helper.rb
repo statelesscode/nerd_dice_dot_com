@@ -48,7 +48,7 @@ module ActiveSupport
     #
     # Will print fixture and error message(s) upon failure
     def run_model_fixture_tests(klass_name)
-      klass_name.all.each do |model_record|
+      klass_name.find_each do |model_record|
         assert_predicate(
           model_record, :valid?,
           "Invalid #{klass_name} Fixture: #{model_record.inspect}\n\nErrors: #{model_record.errors.messages}"

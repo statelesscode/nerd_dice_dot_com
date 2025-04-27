@@ -10,10 +10,10 @@ gem "rails", "~> 7.0.8"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 6.6"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -25,13 +25,13 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails", "~> 4.0"
+gem "tailwindcss-rails", "~> 4.2"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
 # Use Devise for User web authentication
-gem "devise", "~> 4.9.0"
+gem "devise", "~> 4.9.4"
 
 # remove after upgrading ONLY for getting 7.0 passing
 gem "bigdecimal"
@@ -87,6 +87,6 @@ group :test do
   gem "selenium-webdriver"
 
   # test coverage
-  gem "coveralls_reborn", "~> 0.25.0", require: false
+  gem "coveralls_reborn", "~> 0.28.0", require: false
   gem "simplecov-lcov", "~> 0.8.0", require: false
 end

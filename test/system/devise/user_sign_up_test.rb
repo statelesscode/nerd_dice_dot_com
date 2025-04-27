@@ -157,7 +157,7 @@ module Devise
       # unconfirmed user
       def unconfirmed_user_assertions!(start_time)
         # get last user (need to use created due to UUID primary key)
-        unconfirmed_user = User.where("created_at >= ?", start_time).take
+        unconfirmed_user = User.find_by("created_at >= ?", start_time)
 
         assert_nil unconfirmed_user.confirmed_at
         assert_not_nil unconfirmed_user.confirmation_token
