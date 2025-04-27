@@ -33,6 +33,10 @@ Rails/Present:
   Exclude:
     - 'bin/bundle'
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - db/migrate/20250427002432_add_service_name_to_active_storage_blobs.active_storage.rb
+
 # Prefer &&/|| over and/or.
 Style/AndOr:
   Enabled: true
@@ -232,6 +236,8 @@ Style/TrivialAccessors:
 
 Style/Documentation:
   Enabled: true
+  Exclude:
+  - 'config/application.rb'
 
 Style/EmptyMethod:
   Exclude:
@@ -284,6 +290,7 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - 'config/initializers/*'
+    - 'config/environments/*'
 
 Metrics/MethodLength:
   Enabled: true
