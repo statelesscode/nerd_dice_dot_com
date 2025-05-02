@@ -9,8 +9,54 @@ on: [push]
   # workflow_dispatch:
 
 jobs:
-  build:
+  scan_ruby:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for common Rails security vulnerabilities using static analysis
+        run: bin/brakeman --no-pager
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for security vulnerabilities in JavaScript dependencies
+        run: bin/importmap audit
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Lint code for consistent style
+        run: bin/rubocop -f github
+
+  test:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -29,15 +75,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Install PostgreSQL
       run: sudo apt-get -yqq install libpq-dev
+
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.4'
+        ruby-version: .ruby-version
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run Rubocop
-      run: bundle exec rubocop --parallel
+
     - name: Setup Database
       env:
         RAILS_ENV: test
@@ -51,6 +98,7 @@ jobs:
         printf "$TEST_KEY" > config/credentials/test.key
         cp .github/build_overwrite_files/test.yml.enc.github-actions config/credentials/test.yml.enc
         bundle exec rails db:setup
+
     - name: Build and test with minitest
       env:
         RAILS_ENV: test
@@ -59,6 +107,15 @@ jobs:
         POSTGRES_PASSWORD: postgres
         POSTGRES_DB: postgres
       run: bundle exec rails test:system test
+
+    - name: Keep screenshots from failed system tests
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: screenshots
+        path: ${{ github.workspace }}/tmp/screenshots
+        if-no-files-found: ignore
+
     - name: Coveralls Parallel
       uses: coverallsapp/github-action@master
       with:
@@ -67,7 +124,7 @@ jobs:
         parallel: true
 
   finish:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
