@@ -291,6 +291,7 @@ Metrics/BlockLength:
   Exclude:
     - 'config/initializers/*'
     - 'config/environments/*'
+    - 'db/queue_schema.rb'
 
 Metrics/MethodLength:
   Enabled: true
@@ -315,6 +316,11 @@ Style/ExpandPathArguments:
   Enabled: true
   Exclude:
     - 'bin/bundle'
+
+Style/GlobalStdStream:
+  Exclude:
+   - 'bin/setup'
+   - 'config/environments/production.rb'
 
 Minitest/MultipleAssertions:
   Enabled: false
